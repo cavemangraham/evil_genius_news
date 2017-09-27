@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+  <div class="container">
+  <% @entries.each do |entry| %>
+    <% if entry.content.nil? %>
+    <% else %>
+    <div class="panel panel-default">
+      <div class="panel-body">
+      <b><%= link_to entry.title, entry.url, :target => "_blank" %></b> - <i> published <%= time_ago_in_words(entry.published) %> ago.</i><br><br>
+
+        <%= simple_format(entry.content.gsub('[BREAK]', '<p>')) %>
+      </div>
+    </div>
+    <% end %>
+
+  <% end %>
+</div>
+<br>
+
+<%= link_to 'New Feed', new_feed_path %>
